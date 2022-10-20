@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>時鐘美化</title>
+    <!-- css歸零 -->
+    <link
+      rel="stylesheet"
+      href="https://meyerweb.com/eric/tools/css/reset/reset200802.css"
+    />
+    <!-- Google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      #bg {
+        width: 100vw;
+        height: 100vh;
+        display: block;
+        background-image: linear-gradient(180deg, #13547a 0%, #80d0c7 100%);
+      }
+      #clock {
+        background: #e7e9dc;
+        border: 50px solid #f9ce63;
+        box-shadow: 2px 2px 0 #05404f, 4px 4px 5px #05404f, 6px 6px 10px #05404f,
+          2px 2px 0 #cacdc2 inset, 4px 4px 5px #cacdc2 inset,
+          6px 6px 10px #cacdc2 inset;
+        width: 500px;
+        height: 500px;
+        margin: auto;
+        position: absolute;
+        border-radius: 50%;
+        top: 32%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      #clock::before {
+        content: "";
+        border: 10px solid #b4810032;
+        width: 500px;
+        height: 500px;
+        margin: auto;
+        position: absolute;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      #clockbox {
+        background: #e7e9dc;
+        width: 330px;
+        height: 330px;
+        margin: auto;
+        position: absolute;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+      }
+
+      #hr {
+        width: 100px;
+        height: 10px;
+        background: #494747;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 25px;
+        transform: translateY(-5px) rotate(270deg);
+        transform-origin: left center;
+        z-index: 2;
+      }
+
+      #min {
+        width: 120px;
+        height: 10px;
+        background: #494747;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 25px;
+        transform: translateY(-5px) rotate(270deg);
+        transform-origin: left center;
+        z-index: 2;
+      }
+      #min::before {
+        content: "";
+        width: 30px;
+        height: 2px;
+        background: #e7e9dc;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 50px;
+        transform: translate(80%, -50%);
+        z-index: 2;
+      }
+      #sec {
+        width: 150px;
+        height: 5px;
+        background: #d0534b;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 50px;
+        transform: translateY(-50%) rotate(270deg);
+        transform-origin: left center;
+        z-index: 2;
+      }
+      #center {
+        background: #494747;
+        width: 30px;
+        height: 30px;
+        margin: auto;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+      }
+      #center::before {
+        content: "";
+        background: #e7e9dc;
+        width: 10px;
+        height: 10px;
+        margin: auto;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+      }
+
+      .hrscale {
+        height: 370px;
+        width: 10px;
+        background: #0b738b;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: -1;
+      }
+      #hrscale1 {
+        transform: translate(-50%, -50%);
+      }
+      #hrscale2 {
+        transform: translate(-50%, -50%) rotate(30deg);
+      }
+      #hrscale3 {
+        transform: translate(-50%, -50%) rotate(60deg);
+      }
+      #hrscale4 {
+        transform: translate(-50%, -50%) rotate(90deg);
+      }
+      #hrscale5 {
+        transform: translate(-50%, -50%) rotate(120deg);
+      }
+      #hrscale6 {
+        transform: translate(-50%, -50%) rotate(150deg);
+      }
+
+      .minscale {
+        height: 360px;
+        width: 1px;
+        background: #494747;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: -1;
+      }
+      #minscale1 {
+        transform: translate(-50%, -50%) rotate(5deg);
+      }
+      #minscale2 {
+        transform: translate(-50%, -50%) rotate(10deg);
+      }
+      #minscale3 {
+        transform: translate(-50%, -50%) rotate(15deg);
+      }
+      #minscale4 {
+        transform: translate(-50%, -50%) rotate(20deg);
+      }
+      #minscale5 {
+        transform: translate(-50%, -50%) rotate(25deg);
+      }
+      #minscale6 {
+        transform: translate(-50%, -50%) rotate(35deg);
+      }
+      #minscale7 {
+        transform: translate(-50%, -50%) rotate(40deg);
+      }
+      #minscale8 {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+      #minscale9 {
+        transform: translate(-50%, -50%) rotate(50deg);
+      }
+      #minscale10 {
+        transform: translate(-50%, -50%) rotate(55deg);
+      }
+      #minscale11 {
+        transform: translate(-50%, -50%) rotate(65deg);
+      }
+      #minscale12 {
+        transform: translate(-50%, -50%) rotate(70deg);
+      }
+      #minscale13 {
+        transform: translate(-50%, -50%) rotate(75deg);
+      }
+      #minscale14 {
+        transform: translate(-50%, -50%) rotate(80deg);
+      }
+      #minscale15 {
+        transform: translate(-50%, -50%) rotate(85deg);
+      }
+      #minscale16 {
+        transform: translate(-50%, -50%) rotate(95deg);
+      }
+      #minscale17 {
+        transform: translate(-50%, -50%) rotate(100deg);
+      }
+      #minscale18 {
+        transform: translate(-50%, -50%) rotate(105deg);
+      }
+      #minscale19 {
+        transform: translate(-50%, -50%) rotate(110deg);
+      }
+      #minscale20 {
+        transform: translate(-50%, -50%) rotate(115deg);
+      }
+      #minscale21 {
+        transform: translate(-50%, -50%) rotate(125deg);
+      }
+      #minscale22 {
+        transform: translate(-50%, -50%) rotate(130deg);
+      }
+      #minscale23 {
+        transform: translate(-50%, -50%) rotate(135deg);
+      }
+      #minscale24 {
+        transform: translate(-50%, -50%) rotate(140deg);
+      }
+      #minscale25 {
+        transform: translate(-50%, -50%) rotate(145deg);
+      }
+      #minscale26 {
+        transform: translate(-50%, -50%) rotate(155deg);
+      }
+      #minscale27 {
+        transform: translate(-50%, -50%) rotate(160deg);
+      }
+      #minscale28 {
+        transform: translate(-50%, -50%) rotate(165deg);
+      }
+      #minscale29 {
+        transform: translate(-50%, -50%) rotate(170deg);
+      }
+      #minscale30 {
+        transform: translate(-50%, -50%) rotate(175deg);
+      }
+
+      /* 電子鐘----------------------------------- */
+      /* https://dribbble.com/shots/7203630-Echo-Show-5-Clock-Faces */
+      #digitalClock {
+        position: absolute;
+        display: block;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 500px;
+        height: 200px;
+        background: #e7e9dc;
+        border: 5px solid #e7e9dc;
+        box-shadow: 0 0 0 #cacdc2 inset, 0 0 5px #cacdc2 inset,
+          0 0 10px #cacdc2 inset, 2px 2px 0 #05404f, 4px 4px 5px #05404f,
+          6px 6px 10px #05404f;
+        border-radius: 40px;
+      }
+      #DCbox {
+        position: absolute;
+        display: block;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 420px;
+        height: 120px;
+        background: #05404f;
+        border: 3px solid #216576;
+        color: #e7e9dc;
+        border-radius: 10px;
+      }
+      #time {
+        position: absolute;
+        display: block;
+        font-family: "Alfa Slab One", cursive;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 3.5rem;
+        text-shadow: 2px 2px 0 #6c6868c0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="bg">
+      <div id="clock">
+        <!-- 指針跟中心點 -->
+        <div id="hr"></div>
+        <div id="min"></div>
+        <div id="sec"></div>
+        <div id="center"></div>
+
+        <!-- 小時刻度 -->
+        <div id="clockbox"></div>
+        <div id="hrscale1" class="hrscale"></div>
+        <div id="hrscale2" class="hrscale"></div>
+        <div id="hrscale3" class="hrscale"></div>
+        <div id="hrscale4" class="hrscale"></div>
+        <div id="hrscale5" class="hrscale"></div>
+        <div id="hrscale6" class="hrscale"></div>
+
+        <!-- 分鐘刻度 -->
+        <div id="minscale1" class="minscale"></div>
+        <div id="minscale2" class="minscale"></div>
+        <div id="minscale3" class="minscale"></div>
+        <div id="minscale4" class="minscale"></div>
+        <div id="minscale5" class="minscale"></div>
+        <div id="minscale6" class="minscale"></div>
+        <div id="minscale7" class="minscale"></div>
+        <div id="minscale8" class="minscale"></div>
+        <div id="minscale9" class="minscale"></div>
+        <div id="minscale10" class="minscale"></div>
+        <div id="minscale11" class="minscale"></div>
+        <div id="minscale12" class="minscale"></div>
+        <div id="minscale13" class="minscale"></div>
+        <div id="minscale14" class="minscale"></div>
+        <div id="minscale15" class="minscale"></div>
+        <div id="minscale16" class="minscale"></div>
+        <div id="minscale17" class="minscale"></div>
+        <div id="minscale18" class="minscale"></div>
+        <div id="minscale19" class="minscale"></div>
+        <div id="minscale20" class="minscale"></div>
+        <div id="minscale21" class="minscale"></div>
+        <div id="minscale22" class="minscale"></div>
+        <div id="minscale23" class="minscale"></div>
+        <div id="minscale24" class="minscale"></div>
+        <div id="minscale25" class="minscale"></div>
+        <div id="minscale26" class="minscale"></div>
+        <div id="minscale27" class="minscale"></div>
+        <div id="minscale28" class="minscale"></div>
+        <div id="minscale29" class="minscale"></div>
+        <div id="minscale30" class="minscale"></div>
+      </div>
+      <div id="digitalClock">
+        <div id="DCbox">
+          <h1 id="time"></h1>
+          <!-- <h2 id="date"></h2> -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const hr = document.getElementById(`hr`);
+      const min = document.getElementById(`min`);
+      const sec = document.getElementById(`sec`);
+
+      const timeText = document.querySelector(`#time`);
+      // const dateText = document.querySelector(`#date`);
+
+      setInterval(() => {
+        const date = new Date();
+        // 類比鐘--------------------------
+        hr.style.transform = `translateY(-50%) rotate(${
+          date.getHours() * 30 - 90
+        }deg)`;
+        min.style.transform = `translateY(-50%) rotate(${
+          date.getMinutes() * 6 - 90
+        }deg)`;
+        sec.style.transform = `translateY(-50%) rotate(${
+          date.getSeconds() * 6 - 90
+        }deg)`;
+        // 電子鐘----------------------------
+
+        function check(i) {
+          if (i < 10) {
+            i = "0" + i;
+          }
+          return i;
+        }
+        // const Year = date.getYear() + 1900;
+        // const Month = check(date.getMonth());
+        // const Day = check(date.getDate());
+        const Hours = check(date.getHours());
+        const Minutes = check(date.getMinutes());
+        const Seconds = check(date.getSeconds());
+
+        timeText.innerText = `${Hours}：${Minutes}：${Seconds}`;
+        // dateText.innerText = `${Year}／${Month}／${Day}`;
+      });
+    </script>
+  </body>
+</html>
